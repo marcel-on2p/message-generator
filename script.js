@@ -1,10 +1,42 @@
 // ===== Konfigurierbare Wortlisten =====
 // Füge hier deine eigenen Inhalte hinzu (auch mehr Kategorien möglich)
 const parts = {
-  greetings: ["Hey", "Hallo", "Servus", "Hi", "Moin"],
-  subjects: ["du", "Team", "Freund", "Welt", "Champion"],
-  verbs: ["schaffst", "rockst", "eroberst", "überzeugst", "meisterst"],
-  objects: ["den Tag", "die Challenge", "das Level", "die Liste", "die Aufgabe"],
+  greetings: [
+  "Willkommen, Champion des Tages!",
+  "Hallo, unaufhaltsamer Problemlöser!",
+  "Grüß dich, Held der kleinen Schritte!",
+  "Servus, Meister der guten Laune!",
+  "Hey, Zukunfts-Gewinner!",
+  "Moin, unerschütterlicher Optimist!",
+  "Hi, kreatives Genie auf Erfolgskurs!",
+  "Guten Tag, Fels in der Brandung!",
+  "Hallo, wandelndes Energiepaket!",
+  "Willkommen, inspirierende Legende!"
+],
+  subjects: [
+  "Du schaffst alles, wenn du nur dranbleibst.",
+  "Heute ist der perfekte Tag, um Neues zu wagen.",
+  "Gib niemals auf – dein Durchbruch ist näher als du denkst.",
+  "Jeder Schritt bringt dich deinem Ziel näher.",
+  "Du bist stärker, als du dir selbst zutraust.",
+  "Aus kleinen Schritten entstehen große Erfolge."
+],
+  verbs: [
+  "Der Weg ist das Ziel.",
+  "Wer kämpft, kann verlieren. Wer nicht kämpft, hat schon verloren.",
+  "Geduld ist der Schlüssel zum Erfolg.",
+  "Auch die längste Reise beginnt mit dem ersten Schritt.",
+  "Man wächst an seinen Herausforderungen.",
+  "Träume nicht dein Leben, sondern lebe deinen Traum."
+],
+  objects: [
+  "Du bist unglaublich stark!",
+  "Du hast ein großartiges Talent.",
+  "Dein Durchhaltevermögen ist bewundernswert.",
+  "Du machst das richtig gut!",
+  "Du bist einzigartig und wertvoll.",
+  "Du strahlst pure Energie aus!"
+],
   endings: ["🚀", "💪", "🔥", "✨", "🌟"]
 };
 
@@ -15,7 +47,7 @@ const $ = (sel) => document.querySelector(sel);
 // Einfache "keine direkte Wiederholung"-Logik über localStorage:
 function generateMessageSimple() {
   const msg =
-    `${pick(parts.greetings)}, ${pick(parts.subjects)}! ` +
+    `${pick(parts.greetings)} ${pick(parts.subjects)} ` +
     `${pick(parts.verbs)} ${pick(parts.objects)} ${pick(parts.endings)}`;
 
   const last = localStorage.getItem("lastMessage");
