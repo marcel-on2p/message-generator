@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Message Generator</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <noscript>Bitte JavaScript aktivieren.</noscript>
+
+    <main class="container">
+      <h1>Message Generator</h1>
+
+      <section aria-label="Ausgabe">
+        <div id="message" class="message" role="status" aria-live="polite">
+          <!-- die generierte Nachricht erscheint hier -->
+        </div>
+      </section>
+
+      <section class="controls" aria-label="Steuerung">
+        <button id="newMessage" type="button">Neue Nachricht</button>
+        <button id="copyBtn" type="button" title="In Zwischenablage kopieren">
+          Kopieren
+        </button>
+      </section>
+
+      <details class="hint">
+        <summary>Konfiguration & Tipps</summary>
+        <p>
+          Passe die Wortlisten in <code>script.js</code> an (Arrays
+          <code>greetings</code>, <code>subjects</code>, <code>verbs</code>,
+          <code>objects</code>, <code>endings</code>). Füge eigene Kategorien
+          hinzu oder lade Vorlagen aus einer JSON.
+        </p>
+      </details>
+    </main>
+  </body>
+</html>

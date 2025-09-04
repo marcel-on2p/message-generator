@@ -1,0 +1,95 @@
+// ===== Konfigurierbare Wortlisten =====
+// Füge hier deine eigenen Inhalte hinzu (auch mehr Kategorien möglich)
+const parts = {
+  greetings: ["Hey", "Hallo", "Servus", "Hi", "Moin"],
+  subjects: ["du", "Team", "Freund", "Welt", "Champion"],
+  verbs: ["schaffst", "rockst", "eroberst", "überzeugst", "meisterst"],
+  objects: ["den Tag", "die Challenge", "das Level", "die Liste", "die Aufgabe"],
+  endings: ["🚀", "💪", "🔥", "✨", "🌟"]
+};
+
+// ===== Utilities =====
+const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+const $ = (sel) => document.querySelector(sel);
+
+// Einfache "keine direkte Wiederholung"-Logik über localStorage:
+function generateMessageSimple() {
+  const msg =
+    `${pick(parts.greetings)}, ${pick(parts.subjects)}! ` +
+    `${pick(parts.verbs)} ${pick(parts.objects)} ${pick(parts.endings)}`;
+
+  const last = localStorage.getItem("lastMessage");
+  if (msg === last) return generateMessageSimple(); // ziehe neu
+  localStorage.setItem("lastMessage", msg);
+  return msg;
+}
+
+/*
+// Alternative: "no-repeat bis alles durch ist" (für begrenzte Kombi-Mengen):
+// - Erzeugt alle Kombinationen einmal, mischt sie, gibt sie als Queue zurück.
+// - Achtung: Bei großen Listen kann die Kombi-Anzahl sehr groß werden!
+function* allCombosShuffled() {
+  const combos = [];
+  for (const g of parts.greetings)
+    for (const s of parts.subjects)
+      for (const v of parts.verbs)
+        for (const o of parts.objects)
+          for (const e of parts.endings)
+            combos.push(`${g}, ${s}! ${v} ${o} ${e}`);
+
+  // Fisher-Yates mixen
+  for (let i = combos.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [combos[i], combos[j]] = [combos[j], combos[i]];
+  }
+  for (const c of combos) yield c;
+}
+
+let queue = null;
+function generateMessageNoRepeatAll() {
+  if (!queue) queue = allCombosShuffled();
+  const next = queue.next();
+  if (next.done) queue = allCombosShuffled(); // neu füllen, wenn durch
+  return next.value ?? generateMessageNoRepeatAll();
+}
+*/
+
+// ===== App-Logik =====
+function updateMessage() {
+  // einfache Variante:
+  const text = generateMessageSimple();
+
+  // oder streng ohne Wiederholung aller Kombinationen:
+  // const text = generateMessageNoRepeatAll();
+
+  $("#message").textContent = text;
+}
+
+// ===== Setup =====
+document.addEventListener("DOMContentLoaded", () => {
+  const newBtn = $("#newMessage");
+  const copyBtn = $("#copyBtn");
+
+  newBtn.addEventListener("click", updateMessage);
+
+  copyBtn.addEventListener("click", async () => {
+    const text = $("#message").textContent.trim();
+    if (!text) return;
+
+    try {
+      await navigator.clipboard.writeText(text);
+      const prev = copyBtn.textContent;
+      copyBtn.textContent = "Kopiert!";
+      setTimeout(() => (copyBtn.textContent = prev), 900);
+    } catch {
+      // Fallback: Text markieren
+      const range = document.createRange();
+      range.selectNodeContents($("#message"));
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
+  });
+
+  updateMessage();
+});
