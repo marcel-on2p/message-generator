@@ -67,3 +67,5 @@ button:active { transform: translateY(0); }
 .hint { margin-top: 1.25rem; color: var(--muted); }
 .hint summary { cursor: pointer; }
 .hint code { color: #cbd5ff; }
+
+/*Update 

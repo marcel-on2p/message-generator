@@ -30,12 +30,12 @@ const parts = {
   "Träume nicht dein Leben, sondern lebe deinen Traum."
 ],
   objects: [
-  "Du bist unglaublich stark!",
-  "Du hast ein großartiges Talent.",
-  "Dein Durchhaltevermögen ist bewundernswert.",
-  "Du machst das richtig gut!",
-  "Du bist einzigartig und wertvoll.",
-  "Du strahlst pure Energie aus!"
+  "Denke immer daran: Du bist unglaublich stark!",
+  "Behalte stehts im Hinterkopf: Du hast ein großartiges Talent.",
+  "Eines ist klar: Dein Durchhaltevermögen ist bewundernswert.",
+  "Denke immer daran: Du machst das richtig gut!",
+  "Sei dir immer eines bewusst: Du bist einzigartig und wertvoll.",
+  "Du bist sehr besonders, denn: Du strahlst pure Energie aus!"
 ],
   endings: ["🚀", "💪", "🔥", "✨", "🌟"]
 };
